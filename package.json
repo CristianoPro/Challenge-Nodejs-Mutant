@@ -33,6 +33,7 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "express": "^4.17.1"
   }
 }
