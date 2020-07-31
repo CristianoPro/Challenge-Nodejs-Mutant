@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export class ApiAdapter implements Api {
   async getUser (httpRequest: HttpRequest): Promise<Object[]> {
-    const users = await axios.get(httpRequest.url).then(response => response.data)
-    return users
+    const users = await axios.get(httpRequest.url)
+    return users.data
   }
 }
