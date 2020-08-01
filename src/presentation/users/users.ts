@@ -1,6 +1,5 @@
-import { Controller } from '../protocols/controller'
 import { ApiAdapter } from '../../services/ApiAdapter'
-import { HttpResponse, HttpRequest } from '../protocols/http'
+import { Controller, HttpResponse, HttpRequest } from '../protocols'
 import { badRequest, ok, notFound } from '../helpers/http-helper'
 import { MissingParamError } from '../errors/missing-param-error'
 
