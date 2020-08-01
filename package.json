@@ -6,7 +6,7 @@
   "scripts": {
     "start": "sucrase-node src/main/server.ts",
     "build": "tsc",
-    "prod": "npm run build && node dist/main/server.js", 
+    "prod": "npm run build && node dist/main/server.js",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "fast-glob": "^3.2.4"
   }
 }
