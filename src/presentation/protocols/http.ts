@@ -5,5 +5,6 @@ export interface HttpResponse {
 
 export interface HttpRequest {
   url: string
+  params?: string
   body?: any
 }

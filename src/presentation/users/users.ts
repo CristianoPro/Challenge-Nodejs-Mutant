@@ -16,5 +16,14 @@ export class UserController implements Controller {
         body: 'Not Found'
       }
     }
+    if (httpRequest.params === 'websites') {
+      const websites = users.map((user) => user.website)
+      return {
+        statusCode: 200,
+        body: {
+          websites
+        }
+      }
+    }
   }
 }
