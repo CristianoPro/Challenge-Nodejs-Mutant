@@ -25,5 +25,19 @@ export class UserController implements Controller {
         }
       }
     }
+    if (httpRequest.params === 'user') {
+      const usersInfo = users.map((user) => {
+        const { name, email } = user
+        const companyName = user.company.name
+        return { name, email, companyName }
+      })
+      const orderedUsers = usersInfo.sort((a, b) => a.name > b.name ? 1 : -1)
+      return {
+        statusCode: 200,
+        body: {
+          orderedUsers
+        }
+      }
+    }
   }
 }
