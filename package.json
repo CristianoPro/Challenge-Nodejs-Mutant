@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "sucrase-node src/main/server.ts",
+    "build": "tsc",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
@@ -29,6 +31,7 @@
     "husky": "^4.2.5",
     "jest": "^26.2.1",
     "lint-staged": "^10.2.11",
+    "sucrase": "^3.15.0",
     "ts-jest": "^26.1.4",
     "typescript": "^3.9.7"
   },
