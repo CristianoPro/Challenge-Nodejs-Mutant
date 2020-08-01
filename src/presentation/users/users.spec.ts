@@ -116,6 +116,12 @@ describe('UsersController', () => {
     expect(httpResponse.statusCode).toBe(400)
   })
 
+  it('Should return 400 if param is invalid', async () => {
+    const { sut } = makeSut()
+    const httpResponse = await sut.handle(makeFakeRequest('invalid'))
+    expect(httpResponse.statusCode).toBe(400)
+  })
+
   it('Should return all websites if is provided as param', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(makeFakeRequest('websites'))
