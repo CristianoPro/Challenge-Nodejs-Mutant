@@ -1,7 +1,7 @@
 import { ApiAdapter } from '../../services/ApiAdapter'
 import { Controller, HttpResponse, HttpRequest } from '../protocols'
 import { badRequest, ok, notFound } from '../helpers/http-helper'
-import { MissingParamError } from '../errors/missing-param-error'
+import { MissingParamError, InvalidParamError } from '../errors'
 
 interface usersFiltered {
   name: string
@@ -21,14 +21,18 @@ export class UsersController implements Controller {
   }
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+    const validsFilters = ['websites', 'users', 'suite']
     const { filters } = httpRequest
-    if (!filters) {
-      return badRequest(new MissingParamError('Missing Param'))
-    }
+
+    if (!filters) { return badRequest(new MissingParamError('filters')) }
+
+    if (!validsFilters.includes(filters)) { return badRequest(new InvalidParamError(filters)) }
+
     const users = await this.api.getUsers(httpRequest.url)
     if (!users) {
       return notFound('Users not found')
     }
+
     const acceptedParams = {
       websites (users: any[]) {
         const websites = users.map((user): String[] => user.website)
