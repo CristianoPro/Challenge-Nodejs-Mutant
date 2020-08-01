@@ -22,7 +22,6 @@ export class UsersController implements Controller {
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     const { filters } = httpRequest
-
     if (!filters) {
       return badRequest(new MissingParamError('Missing Param'))
     }
