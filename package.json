@@ -6,6 +6,7 @@
   "scripts": {
     "start": "sucrase-node src/main/server.ts",
     "build": "tsc",
+    "prod": "npm run build && node dist/main/server.js", 
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
