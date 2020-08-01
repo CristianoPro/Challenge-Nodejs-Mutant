@@ -119,21 +119,21 @@ describe('UserController', () => {
   it('Should return all websites if is provided as param', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(makeFakeRequest('websites'))
-    expect(httpResponse.body).toEqual({
-      websites: [
+    expect(httpResponse.body).toEqual(
+      [
         'hildegard.org',
         'anastasia.net',
         'tasia.net'
       ]
-    })
+    )
     expect(httpResponse.statusCode).toBe(200)
   })
 
   it('Should return name, email and company name if user is provided as param', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(makeFakeRequest('users'))
-    expect(httpResponse.body).toEqual({
-      orderedUsers: [
+    expect(httpResponse.body).toEqual(
+      [
         {
           name: 'Ervin Howell',
           email: 'Shanna@melissa.tv',
@@ -150,21 +150,21 @@ describe('UserController', () => {
           companyName: 'Romaguera-Crona'
         }
       ]
-    })
+    )
     expect(httpResponse.statusCode).toBe(200)
   })
 
   it('Should return all users that contain the word suite in the address', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(makeFakeRequest('suite'))
-    expect(httpResponse.body).toEqual({
-      usersFiltered: [
+    expect(httpResponse.body).toEqual(
+      [
         {
           name: 'Ervin Howell',
           address: 'Suite 879'
         }
       ]
-    })
+    )
     expect(httpResponse.statusCode).toBe(200)
   })
 })

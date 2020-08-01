@@ -4,6 +4,17 @@ import { HttpResponse, HttpRequest } from '../protocols/http'
 import { badRequest, ok, notFound } from '../helpers/http-helper'
 import { MissingParamError } from '../errors/missing-param-error'
 
+interface usersFiltered {
+  name: string
+  address: string
+}
+
+interface orderedUsers {
+  name: string
+  email: string
+  companyName: string
+}
+
 export class UserController implements Controller {
   private readonly api: ApiAdapter
   constructor (api: ApiAdapter) {
@@ -22,19 +33,19 @@ export class UserController implements Controller {
     }
     const acceptedParams = {
       websites (users: any[]) {
-        const websites = users.map((user) => user.website)
-        return { websites }
+        const websites = users.map((user): String[] => user.website)
+        return websites
       },
-      users (users: any[]) {
+      users (users: any[]): orderedUsers[] {
         const usersInfo = users.map((user) => {
           const { name, email } = user
           const companyName = user.company.name
           return { name, email, companyName }
         })
         const orderedUsers = usersInfo.sort((a, b) => a.name > b.name ? 1 : -1)
-        return { orderedUsers }
+        return orderedUsers
       },
-      suite (users: any[]) {
+      suite (users: any[]): usersFiltered[] {
         const searchAddress = (addressUser: string): boolean => (addressUser.toLocaleLowerCase()).includes('suite')
         const userswithSuite = users.filter(user => (searchAddress(user.address.suite)))
         const usersFiltered = userswithSuite.map(user => {
@@ -43,7 +54,7 @@ export class UserController implements Controller {
             address: user.address.suite
           }
         })
-        return { usersFiltered }
+        return usersFiltered
       }
     }
     const data = acceptedParams[params]
