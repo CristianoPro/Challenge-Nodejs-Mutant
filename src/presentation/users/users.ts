@@ -1,7 +1,7 @@
 import { Controller } from '../protocols/controller'
 import { ApiAdapter } from '../../services/ApiAdapter'
 import { HttpResponse, HttpRequest } from '../protocols/http'
-import { badRequest, ok } from '../helpers/http-helper'
+import { badRequest, ok, notFound } from '../helpers/http-helper'
 import { MissingParamError } from '../errors/missing-param-error'
 
 export class UserController implements Controller {
@@ -18,10 +18,7 @@ export class UserController implements Controller {
     }
     const users = await this.api.getUser(httpRequest)
     if (!users) {
-      return {
-        statusCode: 404,
-        body: 'Not Found'
-      }
+      return notFound('Users not found')
     }
     if (params === 'websites') {
       const websites = users.map((user) => user.website)
@@ -35,6 +32,17 @@ export class UserController implements Controller {
       })
       const orderedUsers = usersInfo.sort((a, b) => a.name > b.name ? 1 : -1)
       return ok({ orderedUsers })
+    }
+    if (params === 'suite') {
+      const searchAddress = (addressUser: string): boolean => (addressUser.toLocaleLowerCase()).includes('suite')
+      const userswithSuite = users.filter(user => (searchAddress(user.address.suite)))
+      const usersFiltered = userswithSuite.map(user => {
+        return {
+          name: user.name,
+          address: user.address.suite
+        }
+      })
+      return ok({ usersFiltered })
     }
   }
 }

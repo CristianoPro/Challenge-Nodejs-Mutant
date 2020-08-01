@@ -9,3 +9,8 @@ export const ok = (data: any): HttpResponse => ({
   statusCode: 200,
   body: data
 })
+
+export const notFound = (data: any): HttpResponse => ({
+  statusCode: 404,
+  body: data
+})
