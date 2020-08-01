@@ -98,4 +98,24 @@ describe('UserController', () => {
     })
     expect(httpResponse.statusCode).toBe(200)
   })
+
+  it('Should return name, email and company name if user is provided as param', async () => {
+    const { sut } = makeSut()
+    const httpResponse = await sut.handle(makeFakeRequest('user'))
+    expect(httpResponse.body).toEqual({
+      orderedUsers: [
+        {
+          name: 'Ervin Howell',
+          email: 'Shanna@melissa.tv',
+          companyName: 'Deckow-Crist'
+        },
+        {
+          name: 'Leanne Graham',
+          email: 'Sincere@april.biz',
+          companyName: 'Romaguera-Crona'
+        }
+      ]
+    })
+    expect(httpResponse.statusCode).toBe(200)
+  })
 })
