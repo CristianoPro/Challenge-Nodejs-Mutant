@@ -1,5 +1,3 @@
-import { HttpRequest } from './http'
-
 export interface Api {
-  getUsers: (httpRequest: HttpRequest) => Promise<Object[]>
+  getUsers: (url: string) => Promise<Object[]>
 }

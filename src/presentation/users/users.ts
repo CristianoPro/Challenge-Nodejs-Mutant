@@ -14,19 +14,19 @@ interface orderedUsers {
   companyName: string
 }
 
-export class UserController implements Controller {
+export class UsersController implements Controller {
   private readonly api: ApiAdapter
   constructor (api: ApiAdapter) {
     this.api = api
   }
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
-    const { params } = httpRequest
+    const { filters } = httpRequest
 
-    if (!params) {
+    if (!filters) {
       return badRequest(new MissingParamError('Missing Param'))
     }
-    const users = await this.api.getUsers(httpRequest)
+    const users = await this.api.getUsers(httpRequest.url)
     if (!users) {
       return notFound('Users not found')
     }
@@ -56,7 +56,7 @@ export class UserController implements Controller {
         return usersFiltered
       }
     }
-    const data = acceptedParams[params]
+    const data = acceptedParams[filters]
     return ok(data(users))
   }
 }

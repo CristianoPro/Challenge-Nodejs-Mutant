@@ -1,10 +1,10 @@
-import { UserController } from './users'
+import { UsersController } from './users'
 import { ApiAdapter } from '../../services/ApiAdapter'
 import { HttpRequest } from '../protocols/http'
 
 const makeApiAdapter = (): ApiAdapter => {
   class ApiStub implements ApiAdapter {
-    async getUsers (httpRequest: HttpRequest): Promise<Object[]> {
+    async getUsers (url: string): Promise<Object[]> {
       return await Promise.resolve(makeFakeUsers())
     }
   }
@@ -83,26 +83,26 @@ const makeFakeUsers = (): Object[] => ([
   }
 ])
 
-const makeFakeRequest = (params: string): HttpRequest => ({
+const makeFakeRequest = (filters: string): HttpRequest => ({
   url: 'https://jsonplaceholder.typicode.com/users',
-  params: params
+  filters: filters
 })
 
 interface SutTypes {
-  sut: UserController
+  sut: UsersController
   apiStub: ApiAdapter
 }
 
 const makeSut = (): SutTypes => {
   const apiStub = makeApiAdapter()
-  const sut = new UserController(apiStub)
+  const sut = new UsersController(apiStub)
   return {
     sut,
     apiStub
   }
 }
 
-describe('UserController', () => {
+describe('UsersController', () => {
   it('Should return 404 if not find users', async () => {
     const { sut, apiStub } = makeSut()
     jest.spyOn(apiStub, 'getUsers').mockReturnValue(null)
