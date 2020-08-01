@@ -9,8 +9,6 @@
     "include": ["src/**/*"],
     "exclude": [
         "node_modules", 
-        "corrage",
-        "src/**/*/.test.ts",
-        "src/**/*.spec.ts"
+        "corrage"
     ]
 }
