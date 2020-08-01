@@ -57,6 +57,29 @@ const makeFakeUsers = (): Object[] => ([
       catchPhrase: 'Proactive didactic contingency',
       bs: 'synergize scalable supply-chains'
     }
+  },
+  {
+    id: 3,
+    name: 'Howell',
+    username: 'Antonette',
+    email: 'Shanna@melissa.tv',
+    address: {
+      street: 'Victor Plains',
+      suite: 'AP 879',
+      city: 'Wisokyburgh',
+      zipcode: '90566-7771',
+      geo: {
+        lat: '-43.9509',
+        lng: '-34.4618'
+      }
+    },
+    phone: '010-692-6593 x09125',
+    website: 'tasia.net',
+    company: {
+      name: 'Deckow-Crist',
+      catchPhrase: 'Proactive didactic contingency',
+      bs: 'synergize scalable supply-chains'
+    }
   }
 ])
 
@@ -99,7 +122,8 @@ describe('UserController', () => {
     expect(httpResponse.body).toEqual({
       websites: [
         'hildegard.org',
-        'anastasia.net'
+        'anastasia.net',
+        'tasia.net'
       ]
     })
     expect(httpResponse.statusCode).toBe(200)
@@ -116,9 +140,28 @@ describe('UserController', () => {
           companyName: 'Deckow-Crist'
         },
         {
+          name: 'Howell',
+          email: 'Shanna@melissa.tv',
+          companyName: 'Deckow-Crist'
+        },
+        {
           name: 'Leanne Graham',
           email: 'Sincere@april.biz',
           companyName: 'Romaguera-Crona'
+        }
+      ]
+    })
+    expect(httpResponse.statusCode).toBe(200)
+  })
+
+  it('Should return all users that contain the word suite in the address', async () => {
+    const { sut } = makeSut()
+    const httpResponse = await sut.handle(makeFakeRequest('suite'))
+    expect(httpResponse.body).toEqual({
+      usersFiltered: [
+        {
+          name: 'Ervin Howell',
+          address: 'Suite 879'
         }
       ]
     })
