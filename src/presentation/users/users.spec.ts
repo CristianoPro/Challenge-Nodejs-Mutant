@@ -60,7 +60,7 @@ const makeFakeUsers = (): Object[] => ([
   }
 ])
 
-const makeFakeRequest = (params?: string): HttpRequest => ({
+const makeFakeRequest = (params: string): HttpRequest => ({
   url: 'https://jsonplaceholder.typicode.com/users',
   params: params
 })
@@ -83,8 +83,14 @@ describe('UserController', () => {
   it('Should return 404 if not find users', async () => {
     const { sut, apiStub } = makeSut()
     jest.spyOn(apiStub, 'getUser').mockReturnValue(null)
-    const httpResponse = await sut.handle(makeFakeRequest())
+    const httpResponse = await sut.handle(makeFakeRequest('users'))
     expect(httpResponse.statusCode).toBe(404)
+  })
+
+  it('Should return 400 if not param is provided', async () => {
+    const { sut } = makeSut()
+    const httpResponse = await sut.handle(makeFakeRequest(null))
+    expect(httpResponse.statusCode).toBe(400)
   })
 
   it('Should return all websites if is provided as param', async () => {
@@ -101,7 +107,7 @@ describe('UserController', () => {
 
   it('Should return name, email and company name if user is provided as param', async () => {
     const { sut } = makeSut()
-    const httpResponse = await sut.handle(makeFakeRequest('user'))
+    const httpResponse = await sut.handle(makeFakeRequest('users'))
     expect(httpResponse.body).toEqual({
       orderedUsers: [
         {
