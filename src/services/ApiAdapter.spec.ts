@@ -15,13 +15,13 @@ describe('Api adapter', () => {
   it('Should call api with correct url', async () => {
     const sut = makeSut()
     const getSpy = jest.spyOn(axios, 'get')
-    await sut.getUser(makeFakeRequest())
+    await sut.getUsers(makeFakeRequest())
     expect(getSpy).toHaveBeenCalledWith('https://jsonplaceholder.typicode.com/users')
   })
 
   it('Should return an Array', async () => {
     const sut = makeSut()
-    const users = await sut.getUser(makeFakeRequest())
+    const users = await sut.getUsers(makeFakeRequest())
     expect(Array.isArray(users)).toBe(true)
   })
 })

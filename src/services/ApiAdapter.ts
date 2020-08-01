@@ -3,7 +3,7 @@ import { HttpRequest } from '../presentation/protocols/http'
 import axios from 'axios'
 
 export class ApiAdapter implements Api {
-  async getUser (httpRequest: HttpRequest): Promise<any[]> {
+  async getUsers (httpRequest: HttpRequest): Promise<Object[]> {
     const users = await axios.get(httpRequest.url)
     return users.data
   }

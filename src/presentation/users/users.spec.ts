@@ -4,7 +4,7 @@ import { HttpRequest } from '../protocols/http'
 
 const makeApiAdapter = (): ApiAdapter => {
   class ApiStub implements ApiAdapter {
-    async getUser (httpRequest: HttpRequest): Promise<Object[]> {
+    async getUsers (httpRequest: HttpRequest): Promise<Object[]> {
       return await Promise.resolve(makeFakeUsers())
     }
   }
@@ -105,7 +105,7 @@ const makeSut = (): SutTypes => {
 describe('UserController', () => {
   it('Should return 404 if not find users', async () => {
     const { sut, apiStub } = makeSut()
-    jest.spyOn(apiStub, 'getUser').mockReturnValue(null)
+    jest.spyOn(apiStub, 'getUsers').mockReturnValue(null)
     const httpResponse = await sut.handle(makeFakeRequest('users'))
     expect(httpResponse.statusCode).toBe(404)
   })
