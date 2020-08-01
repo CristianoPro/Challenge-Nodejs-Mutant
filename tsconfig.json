@@ -10,5 +10,7 @@
     "exclude": [
         "node_modules", 
         "corrage",
+        "src/**/*/.test.ts",
+        "src/**/*.spec.ts"
     ]
 }
