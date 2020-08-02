@@ -2,11 +2,30 @@ import request from 'supertest'
 import app from '../config/app'
 
 describe('Users Routes', () => {
-  it('Shuld return all websites on success', async () => {
-    const filters = 'websites'
+  it('Should return 400 if not param is provided', async () => {
     await request(app)
       .get('/app/users')
-      .query({ filters })
+      .expect(400)
+  })
+
+  it('Should return all websites on success', async () => {
+    await request(app)
+      .get('/app/users')
+      .query({ filters: 'websites' })
+      .expect(200)
+  })
+
+  it('Should return all users on success', async () => {
+    await request(app)
+      .get('/app/users')
+      .query({ filters: 'users' })
+      .expect(200)
+  })
+
+  it('Should return all users that contain the word suite in the address on success', async () => {
+    await request(app)
+      .get('/app/users')
+      .query({ filters: 'suite' })
       .expect(200)
   })
 })
