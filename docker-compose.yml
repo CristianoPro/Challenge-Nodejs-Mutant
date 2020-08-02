@@ -1,39 +1,33 @@
+ 
 version: "3"
-services: 
-    server:
-        container_name: server-container
-        build: .
-        image: mutant-api
-        restart: always
-        command: npm start
-        environment: 
-            PORT: 8080
-            ELASTIC: 192.168.1.10:9200
-            NODE_ENV: development
-        depends_on: 
-            - elastic
-        links: 
-            - elastic
-        ports: 
-            - "8080:8080"
-        volumes: 
-            - ./dist:/usr/src/mutant/dist
+services:  
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.0.0
+    environment:
+      - node.name=es01
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
 
-    elastic:
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.8.1
-        container_name: ElasticSearch
-        restart: always
-        environment: 
-            - http.host=0.0.0.0
-            - transport.host=127.0.0.1
-            - discovery.type=single-node
-            - http.cors.enabled=true
-            - http.cors.allow-origin=*
-        ports: 
-            - "9200:9200"
-            - "9300:9300"
-        volumes:
-            - ./data:/usr/share/elasticsearch/data
+  server:
+    container_name: server-container
+    build: .
+    image: mutant-api
+    restart: always
+    command: npm start
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./dist:/usr/src/mutant/dist
+    links:
+      - elasticsearch    
+volumes:
+  data:
+    driver: local
+      
+
     
-        
-
