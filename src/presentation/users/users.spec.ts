@@ -125,13 +125,17 @@ describe('UsersController', () => {
   it('Should return all websites if is provided as param', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(makeFakeRequest('websites'))
-    expect(httpResponse.body).toEqual(
-      [
-        'hildegard.org',
-        'anastasia.net',
-        'tasia.net'
-      ]
-    )
+    expect(httpResponse.body).toEqual([
+      {
+        web: 'hildegard.org'
+      },
+      {
+        web: 'anastasia.net'
+      },
+      {
+        web: 'tasia.net'
+      }
+    ])
     expect(httpResponse.statusCode).toBe(200)
   })
 

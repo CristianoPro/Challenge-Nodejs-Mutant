@@ -1,3 +1,3 @@
 export default {
-  port: process.env.PORT || 8080
+  port: process.env.NODE_PORT || 8080
 }

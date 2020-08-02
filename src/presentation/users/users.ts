@@ -2,6 +2,7 @@ import { ApiAdapter } from '../../services/ApiAdapter'
 import { Controller, HttpResponse, HttpRequest } from '../protocols'
 import { badRequest, ok, notFound } from '../helpers/http-helper'
 import { MissingParamError, InvalidParamError } from '../errors'
+import { storeLog } from '../../services/elasticsearch'
 
 interface usersFiltered {
   name: string
@@ -35,7 +36,7 @@ export class UsersController implements Controller {
 
     const acceptedParams = {
       websites (users: any[]) {
-        const websites = users.map((user): String[] => user.website)
+        const websites = users.map(user => { return { web: user.website } })
         return websites
       },
       users (users: any[]): orderedUsers[] {
@@ -59,7 +60,9 @@ export class UsersController implements Controller {
         return usersFiltered
       }
     }
-    const data = acceptedParams[filters]
-    return ok(data(users))
+    const search = acceptedParams[filters]
+    const data = search(users)
+    await storeLog(data)
+    return ok(data)
   }
 }
