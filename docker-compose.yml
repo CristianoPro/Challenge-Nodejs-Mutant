@@ -15,7 +15,7 @@ services:
         links: 
             - elastic
         ports: 
-            -"8080:8080"
+            - "8080:8080"
         volumes: 
             - ./dist:/usr/src/mutant/dist
 
