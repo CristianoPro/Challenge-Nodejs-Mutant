@@ -33,7 +33,7 @@ Para os testes eu utilizei o `jest`, criei alguns scripts especificos para os te
 - [x] Testes de CI - Este comando roda todos os testes tanto unitários como os de integração e gera uma pasta com arquivos státicos
   contendo informções sobre a cobertura de testes no código basta rodar o comando `npm run test:ci`
 
-# Inicializar a aplicação
+## Inicializar a aplicação
 
 - Para inicializar a aplicação é nescesário ter instalado o `Docker` e o `Docker-compose`
 - Tendo as duas ferramentas instaladas basta rodar o comando `npm run up` 
