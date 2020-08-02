@@ -21,7 +21,7 @@ Nas rotas utilizei query params como filtro para retornar cada um dos items sepa
 
 - [x] Salvar logs de todas interações no elasticsearchq
 
-# Testes
+## Testes
 Para os testes eu utilizei o `jest`, criei alguns scripts especificos para os testes
 
 - [x] Testes unitários - Para os teste unitários arquivos com a extensão `.spec.ts` 
@@ -31,4 +31,13 @@ Para os testes eu utilizei o `jest`, criei alguns scripts especificos para os te
   você pode utilizar o seguinte comando: `npm run test:intagration`
 
 - [x] Testes de CI - Este comando roda todos os testes tanto unitários como os de integração e gera uma pasta com arquivos státicos
-  contendo informções sobre a cobertura de testes no código basta rodar o comando `npm run test:ci`  
+  contendo informções sobre a cobertura de testes no código basta rodar o comando `npm run test:ci`
+
+# Inicializar a aplicação
+
+- Para inicializar a aplicação é nescesário ter instalado o `Docker` e o `Docker-compose`
+- Tendo as duas ferramentas instaladas basta rodar o comando `npm run up` 
+- Este script vai gerar a build da aplicação e depois inicializar os containers do Docker 
+- Se tudo ocorrer sem problemas a aplicação estará rodando na `porta 8080` e o elasticsearchq na `porta 9200`
+- Se possuir o Insomnia ou o postman instalado você pode utilizar o arquivo `insomniaImport.json` que está na raiz do projeto para importar as rotas
+
