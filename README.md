@@ -45,4 +45,7 @@ Para os testes eu utilizei o `jest`, criei alguns scripts especificos para os te
 
 - Utilizei o `husky` em conjunto com o `lintstaged` e `eslint` 
 - Que juntas me permitem rondar todos os testes verificar o padrão do código e padrão de commit e só após passar por essas verificações o commit é aceito.
-- Tetei aplicar um pouco dos padrões do Clean architecture e princípios do SOLID para deixa a aplicação mais desacoplada o póssivel 
+- Tetei aplicar um pouco dos padrões do Clean architecture e princípios do SOLID para deixa a aplicação mais desacoplada o póssivel
+
+### Considerações finais 
+- Vou ficar devendo a implementação do vagrant pois devido ao prazo e se uma ferramente que nunca utilizei me faltou um pouco de conhecimento de DevOps :)
