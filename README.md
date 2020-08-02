@@ -41,3 +41,8 @@ Para os testes eu utilizei o `jest`, criei alguns scripts especificos para os te
 - Se tudo ocorrer sem problemas a aplicação estará rodando na `porta 8080` e o elasticsearchq na `porta 9200`
 - Se possuir o Insomnia ou o postman instalado você pode utilizar o arquivo `insomniaImport.json` que está na raiz do projeto para importar as rotas
 
+## Ferramentas de lint e Algumas práticas que tentei aplicar neste projeto
+
+- Utilizei o `husky` em conjunto com o `lintstaged` e `eslint` 
+- Que juntas me permitem rondar todos os testes verificar o padrão do código e padrão de commit e só após passar por essas verificações o commit é aceito.
+- Tetei aplicar um pouco dos padrões do Clean architecture e princípios do SOLID para deixa a aplicação mais desacoplada o póssivel 
