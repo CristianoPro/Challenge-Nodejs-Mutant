@@ -1,10 +1,11 @@
 import { Controller, HttpRequest } from '../../presentation/protocols'
 import { Request, Response } from 'express'
+import env from '../config/env'
 
 export const adaptRoute = (controller: Controller) => {
   return async (req: Request, res: Response) => {
     const httpRequest: HttpRequest = {
-      url: 'https://jsonplaceholder.typicode.com/users',
+      url: `${env.typiCodeUrl}`,
       body: req.body,
       filters: req.query.filters
     }

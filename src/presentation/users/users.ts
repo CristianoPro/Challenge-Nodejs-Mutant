@@ -16,10 +16,7 @@ interface orderedUsers {
 }
 
 export class UsersController implements Controller {
-  private readonly api: ApiAdapter
-  constructor (api: ApiAdapter) {
-    this.api = api
-  }
+  constructor (private readonly api: ApiAdapter) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     const validsFilters = ['websites', 'users', 'suite']
@@ -30,9 +27,8 @@ export class UsersController implements Controller {
     if (!validsFilters.includes(filters)) { return badRequest(new InvalidParamError(filters)) }
 
     const users = await this.api.getUsers(httpRequest.url)
-    if (!users) {
-      return notFound('Users not found')
-    }
+
+    if (!users) { return notFound('Users not found') }
 
     const acceptedParams = {
       websites (users: any[]) {
