@@ -1,10 +1,10 @@
-### Challenge - Nodejs
+# Challenge - Nodejs
 
 ## Objetivos
 
 - [x] Carregar a rota `https://jsonplaceholder.typicode.com/users`, que retorna um JSON 
 
-# Rotas
+## Rotas
 Nas rotas utilizei query params como filtro para retornar cada um dos items separadamente em cada requisição 
 
 - [x] Os websites de todos os usuários `http://localhost:8080/app/users?filters=websites`
@@ -17,4 +17,4 @@ Nas rotas utilizei query params como filtro para retornar cada um dos items sepa
 
 - [x] Mostrar todos os usuários que no endereço contem a palavra suite `http://localhost:8080/app/users?filters=suite`
 
-  ```[{"name": "Ervin Howell", "address": "Suite 879"}]```
+      ```[{"name": "Ervin Howell", "address": "Suite 879"}]```
