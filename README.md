@@ -40,6 +40,7 @@ Para os testes eu utilizei o `jest`, criei alguns scripts especificos para os te
 - Este script vai gerar a build da aplicação e depois inicializar os containers do Docker 
 - Se tudo ocorrer sem problemas a aplicação estará rodando na `porta 8080` e o elasticsearchq na `porta 9200`
 - Se possuir o Insomnia ou o postman instalado você pode utilizar o arquivo `insomniaImport.json` que está na raiz do projeto para importar as rotas
+- Fiz o deploy da api no Heroku que pode ser acessada nesse url `https://mutant-challenge.herokuapp.com/app/users?filters=users`
 
 ## Ferramentas de lint e Algumas práticas que tentei aplicar neste projeto
 
