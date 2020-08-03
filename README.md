@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/CristianoPro/Challenge-Nodejs-Mutant.svg?branch=master)](https://travis-ci.org/CristianoPro/Challenge-Nodejs-Mutant)
+[![Coverage Status](https://coveralls.io/repos/github/CristianoPro/Challenge-Nodejs-Mutant/badge.svg?branch=master)](https://coveralls.io/github/CristianoPro/Challenge-Nodejs-Mutant?branch=master)
+
 # Challenge - Nodejs
 
 ## Objetivos
